@@ -665,9 +665,9 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: SetGameMode
+      - m_Target: {fileID: 851677625}
+        m_TargetAssemblyTypeName: DifficultyAdjuster, Assembly-CSharp
+        m_MethodName: SetDifficulty
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1178,6 +1178,7 @@ GameObject:
   m_Component:
   - component: {fileID: 851677623}
   - component: {fileID: 851677624}
+  - component: {fileID: 851677625}
   m_Layer: 5
   m_Name: DifficultyToggles
   m_TagString: Untagged
@@ -1221,6 +1222,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AllowSwitchOff: 0
+--- !u!114 &851677625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 851677622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15eea0fc571f14fb996d4239f13d64d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &890638642
 GameObject:
   m_ObjectHideFlags: 0
@@ -1387,9 +1400,9 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: SetGameMode
+      - m_Target: {fileID: 851677625}
+        m_TargetAssemblyTypeName: DifficultyAdjuster, Assembly-CSharp
+        m_MethodName: SetDifficulty
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2072,9 +2085,9 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: SetGameMode
+      - m_Target: {fileID: 851677625}
+        m_TargetAssemblyTypeName: DifficultyAdjuster, Assembly-CSharp
+        m_MethodName: SetDifficulty
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
