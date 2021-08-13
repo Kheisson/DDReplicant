@@ -1,16 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    private TextMeshProUGUI _textTMP;
-    private ushort _score = 0;
-    private Slider volumeSlider;
-    [SerializeField] TextMeshProUGUI scoreText;
-    [SerializeField] TextMeshProUGUI personalBestText;
     /*
      * Below are string for scoring, because strings are immutable, we shouldn't
      * Create new ones everytime to save un needed GC
@@ -20,6 +13,12 @@ public class UIManager : MonoBehaviour
     private string _goodScoreString = "Good";
     private string _badScoreString = "Bad";
 
+    private TextMeshProUGUI _textTMP;
+    private ushort _score = 0;
+    private Slider _volumeSlider;
+
+    [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI personalBestText;
     [SerializeField] private TextMeshProUGUI performanceGague;
     [SerializeField] private GameObject pauseMenu;
 
@@ -39,7 +38,7 @@ public class UIManager : MonoBehaviour
         AudioManager.Instance.OnSongEnded += PopupGameOverUI;
         _textTMP = GetComponentInChildren<TextMeshProUGUI>();
         performanceGague.text = "";
-        volumeSlider = pauseMenu.GetComponentInChildren<Slider>();
+        _volumeSlider = pauseMenu.GetComponentInChildren<Slider>();
     }
 
     private void Update()
@@ -91,12 +90,12 @@ public class UIManager : MonoBehaviour
         if (AudioManager.Instance.audioSource.isPlaying == true)
         {
             AudioManager.Instance.audioSource.Pause();
-            volumeSlider.value = GameManager.Instance.Volume;
+            _volumeSlider.value = GameManager.Instance.Volume;
         }
         else
         {
             AudioManager.Instance.audioSource.UnPause();
-            GameManager.Instance.SetVolume(volumeSlider.value);
+            GameManager.Instance.SetVolume(_volumeSlider.value);
         }
         pauseMenu.SetActive(!pauseMenu.activeInHierarchy);
     }

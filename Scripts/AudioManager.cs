@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class AudioManager : MonoBehaviour
 {
@@ -33,8 +30,8 @@ public class AudioManager : MonoBehaviour
     {
         if (audioSource.clip.length + 2f <= Time.timeSinceLevelLoad)
         {
-            OnSongEnded?.Invoke();
             SpawnManager.Spawner.StopAllCoroutines();
+            OnSongEnded?.Invoke();
         }
     }
 

@@ -9,13 +9,13 @@ public class SpawnManager : MonoBehaviour
     public GameMode difficulty;
 
     [SerializeField, Range(0, 15)] private float speed;
-    [SerializeField] private GameObject[] _arrowPrefabs = new GameObject[4];
-    [SerializeField] private byte _spawnAmount = 4;
-    [SerializeField] private float _spawnRate = 2f;
+    [SerializeField] private GameObject[] arrowPrefabs = new GameObject[4];
+    [SerializeField] private byte spawnAmount = 8;
+    [SerializeField] private float spawnRate = 2f;
 
     private List<GameObject> _arrowQueue = new List<GameObject>();
     private Transform[] _spawnLocations = new Transform[4];
-    private bool gameStarted;
+    private bool _gameStarted;
 
 
     //Singlton instansiation
@@ -38,10 +38,10 @@ public class SpawnManager : MonoBehaviour
     //Enables the arrow if not active in scene
     IEnumerator GameInProgress()
     {
-        if(!gameStarted)
+        if(!_gameStarted)
         {
             yield return new WaitForSecondsRealtime(3f);
-            gameStarted = true;
+            _gameStarted = true;
         }
         while (true)
         {
@@ -69,7 +69,7 @@ public class SpawnManager : MonoBehaviour
                     }
                     break;   
             }
-            yield return new WaitForSecondsRealtime(_spawnRate);
+            yield return new WaitForSecondsRealtime(spawnRate);
         }
     }
 
@@ -96,9 +96,9 @@ public class SpawnManager : MonoBehaviour
         GameObject objectToSpawn;
         GameObject spawned;
         Transform spawnPosition;
-        for (int i = 0; i < _spawnAmount; i++)
+        for (int i = 0; i < spawnAmount; i++)
         {
-            objectToSpawn = _arrowPrefabs[Random.Range(0, _arrowPrefabs.Length)];
+            objectToSpawn = arrowPrefabs[Random.Range(0, arrowPrefabs.Length)];
             spawnPosition = GetSpawnPosition(objectToSpawn);
             spawned = Instantiate(objectToSpawn, spawnPosition.position,
                 objectToSpawn.transform.rotation);
@@ -114,17 +114,17 @@ public class SpawnManager : MonoBehaviour
         difficulty = GameManager.Instance.GetGameMode();
         if (difficulty == GameMode.EASY)
         {
-            _spawnRate = 1f;
+            spawnRate = 1f;
             speed = 8f;
         }
         else if (difficulty == GameMode.NORMAL)
         {
-            _spawnRate = 0.75f;
+            spawnRate = 0.75f;
             speed = 10f;
         }
         else
         {
-            _spawnRate = 0.5f;
+            spawnRate = 0.5f;
             speed = 12f;
         }
     }

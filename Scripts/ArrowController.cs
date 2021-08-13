@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class ArrowController : MonoBehaviour
@@ -11,6 +10,7 @@ public class ArrowController : MonoBehaviour
     private SpriteRenderer _sprite;
     private PolygonCollider2D _polyCol;
     private string _gameObjectName;
+    private Vector3 _animationStrength = new Vector3(1f, 1f, 0);
 
     private void Start()
     {
@@ -41,6 +41,11 @@ public class ArrowController : MonoBehaviour
         {
             _polyCol.enabled = true;
             _sprite.material = litMaterial;
+            if (!DOTween.IsTweening(transform))
+            {
+                transform.DORewind();
+                transform.DOPunchScale(_animationStrength, .25f);
+            }
         }
         else
         {

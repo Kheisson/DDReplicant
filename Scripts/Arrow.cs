@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
+using DG.Tweening;
 public class Arrow : MonoBehaviour
 {
     public enum ArrowType {UP, DOWN, LEFT, RIGHT};
@@ -10,16 +8,23 @@ public class Arrow : MonoBehaviour
 
     private float _speed = 1f;
     private Vector3 _startingPos;
+    private Vector3 _animationStrength = new Vector3(0, .2f, 0);
 
 
     private void OnEnable()
     {
         _speed = SpawnManager.Spawner.Speed;
+        AudioManager.Instance.OnSongEnded += GameEnded;
     }
 
     private void Update()
     {
         transform.position += Vector3.down * Time.deltaTime * _speed;
+        if (!DOTween.IsTweening(transform))
+        {
+            transform.DORewind();
+            transform.DOShakeScale(1f, _animationStrength);
+        }
     }
 
     //Resets position on disable
@@ -28,6 +33,7 @@ public class Arrow : MonoBehaviour
         transform.position = StartingPos;
     }
 
+    //Upon touching the lower bounds, disable gameobject
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Finish"))
@@ -35,5 +41,9 @@ public class Arrow : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
+
+    //Disables object when song ends
+    private void GameEnded() => gameObject.SetActive(false);
+    private void OnDestroy() => AudioManager.Instance.OnSongEnded -= GameEnded;
 
 }
