@@ -29,31 +29,37 @@ public class GameManager : MonoBehaviour
         Volume = _defaultVolume;
     }
 
+    //Game mode (enum) setter
     public void SetGameMode(int mode)
     {
         gameMode = (GameMode)mode;
     }
 
+    //Game mode (enum) getter
     public GameMode GetGameMode()
     {
         return gameMode;
     }
 
+    //Volume setter
     public void SetVolume(float value)
     {
         Volume = value;
     }
 
+    //Unpausing the game and setting time to normal
     public void LoadGame()
     {
         SceneManager.LoadScene(1);
         Time.timeScale = 1;
     }
 
+    //Loads main menu
     public void LoadMainMenu()
     {
         SceneManager.LoadScene(0);
     }
 
 }
+
 public enum GameMode { EASY, NORMAL, HARD };

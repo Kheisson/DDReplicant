@@ -17,6 +17,7 @@ public class SpawnManager : MonoBehaviour
     private Transform[] _spawnLocations = new Transform[4];
     private bool _gameStarted;
     private GameObject _previousArrow;
+    private int _indexForArrow = 0;
 
 
     //Singlton instansiation
@@ -133,14 +134,16 @@ public class SpawnManager : MonoBehaviour
     //Pools an arrow from the list
     private GameObject GetArrowToSpawn()
     {
-        int randomIndex = Random.Range(0, _arrowQueue.Count);
-        GameObject arrow = _arrowQueue[randomIndex];
+        GameObject arrow = _arrowQueue[_indexForArrow];
 
         if(_previousArrow == null)
         {
             _previousArrow = arrow;
             return arrow;
         }
+
+        _indexForArrow = _indexForArrow == _arrowQueue.Count - 1
+            ? _indexForArrow = 0 : _indexForArrow + 1;
 
         if(_previousArrow.GetComponent<Arrow>().type != arrow.GetComponent<Arrow>().type
             && !arrow.activeInHierarchy)

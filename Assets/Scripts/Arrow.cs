@@ -44,6 +44,5 @@ public class Arrow : MonoBehaviour
 
     //Disables object when song ends
     private void GameEnded() => gameObject.SetActive(false);
-    private void OnDestroy() => AudioManager.Instance.OnSongEnded -= GameEnded;
 
 }

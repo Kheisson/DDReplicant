@@ -1522,7 +1522,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7386857361291534615, guid: c63e4c8ac9c004fe2a702a62f6e76451, type: 3}
       propertyPath: gameMode
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c63e4c8ac9c004fe2a702a62f6e76451, type: 3}
@@ -8538,7 +8538,7 @@ MonoBehaviour:
   - {fileID: 802147607168772702, guid: 1dc0502105b4249c0ba24d5aa1f16817, type: 3}
   - {fileID: 7540752350168475623, guid: d1b6c161486db4e29b1d639c15758831, type: 3}
   - {fileID: 1987231418168800867, guid: a6a5b7ef361ec489eafe59d18fd7e939, type: 3}
-  spawnAmount: 20
+  spawnAmount: 12
   spawnRate: 2
 --- !u!4 &1952463405
 Transform:
