@@ -17,6 +17,7 @@ public class UIManager : MonoBehaviour
     private TextMeshProUGUI _textTMP;
     private ushort _score = 0;
     private Slider _volumeSlider;
+    private Sequence _jumpingText;
 
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI personalBestText;
@@ -26,7 +27,6 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance;
     public GameObject gameOverUI;
     public RectTransform performanceGagueRect;
-    Sequence jumpingText;
 
     private void Awake()
     {
@@ -107,7 +107,7 @@ public class UIManager : MonoBehaviour
     //Animates the gague text
     private void AnimatePerformanceGague()
     {
-        jumpingText = DOTween.Sequence()
+        _jumpingText = DOTween.Sequence()
             .Append(performanceGagueRect.DOAnchorPosY(25f, 0.1f))
             .Join(performanceGagueRect.DOAnchorPosY(0f, 3f));
     }

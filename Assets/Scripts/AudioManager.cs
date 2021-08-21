@@ -4,7 +4,6 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
     public AudioSource audioSource;
-    public AudioClip clipOne;
 
     public delegate void SongEnded();
     public event SongEnded OnSongEnded;
@@ -19,11 +18,15 @@ public class AudioManager : MonoBehaviour
         {
             Instance = this;
         }
+
+        if (GameManager.Instance.CurrentStage.fullTrack != null)
+            audioSource.clip = GameManager.Instance.CurrentStage.fullTrack;
     }
 
     private void Start()
     {
         audioSource.volume = GameManager.Instance.Volume;
+        audioSource.PlayDelayed(0.5f);
     }
 
     private void Update()
@@ -35,6 +38,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    //Testing end song mechanics 
     [ContextMenu("TestSongEnd")]
     private void TestSongEnd()
     {

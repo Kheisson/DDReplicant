@@ -5,12 +5,12 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public GameMode gameMode = GameMode.NORMAL;
-    public ushort BestScore { get => _bestScore; set => _bestScore = value; }
+    public ushort BestScore { get => CurrentStage.bestScore; set => CurrentStage.bestScore = value; }
     public float Volume { get => _volume; private set => _volume = value; }
+    public StageSO CurrentStage { get; set; }
 
     private float _volume = 0.5f;
     private float _defaultVolume = 0.5f;
-    private ushort _bestScore;
 
     private void Awake()
     {
@@ -59,7 +59,6 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(0);
     }
-
 }
 
 public enum GameMode { EASY, NORMAL, HARD };
